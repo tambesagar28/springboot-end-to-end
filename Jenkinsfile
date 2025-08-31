@@ -16,11 +16,11 @@ pipeline{
         stage('Image Build and Push'){
             steps{
                 script{
-                    withCredentials([usernamePassword(credentialsId:'dockerhub-creds', usernameVariable:'D_USER',passwordvariable:'D_PASS')]){
+                    withCredentials([usernamePassword(credentialsId:'dockerhub-creds', usernameVariable:'D_USER',passwordVariable:'D_PASS')]){
                         sh """
                             echo ${D_PASS} | docker login -u ${D_USER} --password-stdin
                             docker build -t ${IMAGE}:${TAG} .
-                            docker push ${IAMGE}:${TAG}
+                            docker push ${IMAGE}:${TAG}
                         """
                     }
                 }
