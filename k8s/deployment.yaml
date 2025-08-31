@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-boot-app
+  labels:
+    app: spring
+    tier: web
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: spring
+      tier: web
+  stratergy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavaiable: 25%
+      maxSurge: 25%
+  template:
+    metadata:
+      labels:
+        app: spring
+        tier: web
+    spec:
+      containers:
+        - name: spring-boot-app
+          image: tambesagar28/spring-boot:PLACEHOLDER
+          ports:
+            containerPort: 8081
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8081
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            timeoutSeconds: 5
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 8081
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 2
+          

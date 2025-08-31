@@ -1,0 +1,14 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: spring-boot-Ingress
+spec:
+  rules:
+   - host: spring-boot.vo
+      paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service: spring-boot-service
+          port:
+            number: 8081
