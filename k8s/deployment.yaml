@@ -11,7 +11,7 @@ spec:
     matchLabels:
       app: spring
       tier: web
-  stratergy:
+  strategy:
     type: RollingUpdate
     rollingUpdate:
       maxUnavaiable: 25%
