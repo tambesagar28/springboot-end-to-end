@@ -5,6 +5,7 @@ metadata:
 spec:
   rules:
    - host: spring-boot.vo
+     http:
       paths:
         - path: /
           pathType: Prefix
