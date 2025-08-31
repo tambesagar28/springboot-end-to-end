@@ -7,6 +7,6 @@ RUN mvn clean package
 
 FROM eclipse-temurin:17-jdk-jammy
 WORKDIR /app
-COPY --from-builder= /app/target/*.jar /app/app.jar
+COPY --from=builder /app/target/*.jar /app/app.jar
 EXPOSE 8081
 ENTRYPOINT ["java","-jar","app.jar"]
