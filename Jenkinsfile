@@ -32,10 +32,10 @@ pipeline{
                 script{
                     withCredentials([file(credentialsId:'kubeconfig', variable:'KUBECONFIG_FILE')]){
                         sh """
-                            expose kubeconfig=${KUBECONFIG-FILE}
-                            sed s/PLACEHOLDER/${TAG}/g k8s/deployment.yaml > deployment.applied.yaml
-                            kubectl apply -f deployment.applied.yaml
-                            kubectl apply -f service.yaml
+                            export KUBECONFIG=${KUBECONFIG_FILE}
+                            sed s/PLACEHOLDER/${TAG}/g k8s/deployment.yaml > k8s/deployment.applied.yaml
+                            kubectl apply -f k8s/deployment.applied.yaml
+                            kubectl apply -f k8s/service.yaml
                         """
                     }
                 }

@@ -26,7 +26,7 @@ spec:
         - name: spring-boot-app
           image: tambesagar28/spring-boot:PLACEHOLDER
           ports:
-            containerPort: 8081
+           - containerPort: 8081
           livenessProbe:
             httpGet:
               path: /healthz
